@@ -41,6 +41,10 @@ daftar_provinsi = (
 	('ID-PA','Papua'),
 )
 
+daftar_provinsi_map = {}
+for k, v in daftar_provinsi:
+    daftar_provinsi_map[k] = v
+
 class Juragan(models.Model):
     user = models.ForeignKey(User, unique=True)
     nama = models.CharField(max_length=200)
