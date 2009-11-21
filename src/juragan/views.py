@@ -78,7 +78,7 @@ def daftar(request):
 
             data['juragan'].append(d)
 
-            data = json.dumps(data)
+        data = json.dumps(data)
         return HttpResponse(data, content_type="text/plain")
     else:
         return HttpResponse('<h1>Daftar Juragan</h1>')
