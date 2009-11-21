@@ -7,13 +7,12 @@
    
   // Call this function when the page has been loaded
   function initialize() {
-    {% if map %}
+    {% if peta %}
     var map = new google.maps.Map2(document.getElementById("map"));
-    map.setCenter(new google.maps.LatLng({{ map.y }}, {{ map.x }}), 13);
+    map.setCenter(new google.maps.LatLng({{ peta.y }}, {{ peta.x }}), 13);
     map.addControl(new GSmallMapControl());
     map.addControl(new GMapTypeControl());
-    map.addOverlay(new GMarker(new GLatLng({{ map.y }}, {{ map.x }})));
-
+    map.addOverlay(new GMarker(new GLatLng({{ peta.y }}, {{ peta.x }})));
 
     $.getJSON('/daftar/?format=json', function(json) {
         var icon = new GIcon(G_DEFAULT_ICON);
@@ -57,6 +56,20 @@
 
 {% block content %}
 
+{% if peta %}
+<div id="dekat">
+<h2>Lokasi Terdekat</h2>
+<p>Asal: {{ peta.alamat }}</p>
+<p>Beberapa toko juragan terdekat:</p>
+<ol>
+    {% for toko in peta.dekat %}
+    <li>{{ toko.juragan.nama }} &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.provinsi_nama }}</li>
+    {% endfor %}
+</ol>
+<div id="map"></div>
+</div>
+{% endif %}
+
 <h2>Cari Juragan</h2>
 
 <div id="cari">
@@ -68,8 +81,6 @@
 <p><input type="submit" value="Cari"/></p>
 </form>
 </div>
-
-<div id="map" style="width:450px; height: 450px;"></div>
 
 {% endblock %}
 

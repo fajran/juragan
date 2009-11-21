@@ -243,12 +243,16 @@ z-index: 5;
 list-style: none;
 }
 
-#main li
+#main ul li
 {
 padding-left: 12px;
 background-image: url('images/bullet.gif');
 background-repeat: no-repeat;
 background-position: 0px 6px;
+}
+#main ol li {
+    margin-left: 30px;
+    padding-left: 0px;
 }
 
 #main h2,h3
@@ -406,9 +410,17 @@ color: #E8FAFF;
     width: 70px;
 }
 
+#map {
+    width: 450px;
+    height: 450px;
+    margin: 20px 0 40px 0;
+}
+
 .gmnoprint .nama {
     font-size: 14px;
 }
 .gmnoprint p {
     margin: 0px !important;
 }
+
+
