@@ -1,18 +1,24 @@
 {% extends "base.html" %}
 
 {% block extraheaders %}
+    {% if peta %}
 <script type="text/javascript" src="http://www.google.com/jsapi?hl=id&key={{ key }}"></script>
 <script type="text/javascript">
   google.load("maps", "2.x");
+  var map = undefined;
+  var line = undefined;
+  var sx = {{ peta.x }};
+  var sy = {{ peta.y }};
+  var sll;
    
   // Call this function when the page has been loaded
   function initialize() {
-    {% if peta %}
-    var map = new google.maps.Map2(document.getElementById("map"));
-    map.setCenter(new google.maps.LatLng({{ peta.y }}, {{ peta.x }}), 13);
+    map = new google.maps.Map2(document.getElementById("map"));
+    map.setCenter(new google.maps.LatLng(sy, sx), 13);
+    sll = new GLatLng(sy, sx);
     map.addControl(new GSmallMapControl());
     map.addControl(new GMapTypeControl());
-    map.addOverlay(new GMarker(new GLatLng({{ peta.y }}, {{ peta.x }})));
+    map.addOverlay(new GMarker(sll));
 
     $.getJSON('/daftar/?format=json', function(json) {
         var icon = new GIcon(G_DEFAULT_ICON);
