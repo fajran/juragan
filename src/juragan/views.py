@@ -25,9 +25,9 @@ class Cari(forms.Form):
     provinsi = forms.ChoiceField(choices=models.daftar_provinsi)
 
 def cmp(a, b):
-    if a[1] > b[1]:
+    if a[1] < b[1]:
         return -1
-    elif a[1] < b[1]:
+    elif a[1] > b[1]:
         return 1
     return 0
 
