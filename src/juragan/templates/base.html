@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Juragan Ubuntu</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="/+media/default.css" />
+<script type="text/javascript" src="/+media/jquery.js"></script>
+{% block extraheaders %}{% endblock %}
+</head>
+<body>
+
+<div id="outer">
+
+	<div id="header">
+		<h1><span>Juragan</span>Ubuntu</h1>
+		<div id="menu">
+			<ul>
+				<li class="first"><a href="#">homepage</a></li>
+				<li><a href="#">recent articles</a></li>
+				<li><a href="#">about us</a></li>
+				<li><a href="#">contact us</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="inner">
+
+		<div id="main">
+			<div id="xbgA"></div>
+	
+			<div id="main_inner">
+
+				<!-- Main start -->
+
+{% block content %}
+{% endblock %}
+				
+				<!-- Main End -->
+				<div class="foot"></div>				
+			</div>
+	
+		</div>
+	
+		<div id="side">
+			<!-- Side start -->
+
+{% block side %}
+{% endblock %}
+				
+			<!-- Side end -->
+		</div>
+		<div id="xbgB" class="foot"></div>
+	</div>
+
+</div>
+<div id="outer2"></div>
+
+<div id="footer">
+	&copy; 2009 JuraganUbuntu. Design by <a href="http://www.nodethirtythree.com">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
+</div>
+
+</body>
+</html>

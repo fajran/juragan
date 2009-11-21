@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block extraheaders %}
+<script type="text/javascript" src="http://www.google.com/jsapi?hl=id&key={{ key }}"></script>
+<script type="text/javascript">
+  google.load("maps", "2.x");
+   
+  // Call this function when the page has been loaded
+  function initialize() {
+    {% if map %}
+    var map = new google.maps.Map2(document.getElementById("map"));
+    map.setCenter(new google.maps.LatLng({{ map.y }}, {{ map.x }}), 13);
+    map.addControl(new GSmallMapControl());
+    map.addControl(new GMapTypeControl());
+    map.addOverlay(new GMarker(new GLatLng({{ map.y }}, {{ map.x }})));
+
+
+    $.getJSON('/daftar/?format=json', function(json) {
+        var icon = new GIcon(G_DEFAULT_ICON);
+        icon.image = '/+media/icons/music.png';
+        icon.iconSize = new GSize(32, 37);
+        icon.shadowSize = new GSize(32, 37);
+        icon.iconAnchor = new GPoint(16, 35);
+        icon.infoWindowAnchor = new GPoint(32, 2);
+
+        var options = { icon: icon };
+
+        var items = json.juragan;
+        var len = items.length;
+        for (var i=0; i<len; i++) {
+            var juragan = items[i];
+            var tt = juragan.toko;
+            var ll = tt.length;
+            for (var j=0; j<ll; j++) {
+                var toko = tt[j];
+                var point = new GLatLng(toko.y, toko.x);
+                var marker = new GMarker(point, options);
+                GEvent.addListener(marker, "click", function() {
+                    var html = "";
+                    html += '<p class="nama"><strong>' + juragan.nama + '</strong></p>';
+                    if (juragan.website != undefined && juragan.website != null) {
+                        html += '<p class="web"><a href="' + juragan.website + '">' + juragan.website + '</a></p>';
+                    }
+                    html += '<p class="email">Email: <a href="mailto:' + juragan.email + '">' + juragan.email + '</a></p>';
+                    html += '<p class="alamat">' + toko.alamat + '<br/>' + toko.kota + '<br/>' + toko.provinsi + '</p>';
+                    marker.openInfoWindowHtml(html);
+                });
+                map.addOverlay(marker);
+            }
+        }
+    });
+    {% endif %}
+  }
+  google.setOnLoadCallback(initialize);
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h2>Cari Juragan</h2>
+
+<div id="cari">
+<form method="post" action="/cari/">
+<p><strong>Lokasi Anda</strong>:</p>
+<p><label>Alamat:</label> {{ form.alamat }}</p>
+<p><label>Kota:</label> {{ form.kota }}</p>
+<p><label>Provinsi:</label> {{ form.provinsi }}</p>
+<p><input type="submit" value="Cari"/></p>
+</form>
+</div>
+
+<div id="map" style="width:450px; height: 450px;"></div>
+
+{% endblock %}
+
