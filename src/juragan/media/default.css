@@ -416,6 +416,14 @@ color: #E8FAFF;
     margin: 20px 0 40px 0;
 }
 
+#dekat ol li span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#dekat ol li span:hover {
+    text-decoration: none;
+}
+
 .gmnoprint .nama {
     font-size: 14px;
 }
