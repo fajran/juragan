@@ -57,6 +57,17 @@
     {% endif %}
   }
   google.setOnLoadCallback(initialize);
+
+  function pindah(x, y) {
+    if (map == undefined) { return; }
+    map.panTo(new GLatLng(y, x));
+
+    if (line != undefined) {
+        map.removeOverlay(line);
+    }
+    line = new GPolyline([new GLatLng(y, x), sll]);
+    map.addOverlay(line);
+  }
 </script>
 {% endblock %}
 
@@ -69,7 +80,9 @@
 <p>Beberapa toko juragan terdekat:</p>
 <ol>
     {% for toko in peta.dekat %}
-    <li>{{ toko.juragan.nama }} &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.provinsi_nama }}</li>
+    <li><span onclick="pindah({{ toko.geo_bujur }}, {{ toko.geo_lintang }})">{{ toko.juragan.nama }}</span> 
+        [<a href="/toko/{{ toko.id }}/">info</a>]
+        &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.provinsi_nama }}</li>
     {% endfor %}
 </ol>
 <div id="map"></div>
