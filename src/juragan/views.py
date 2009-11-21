@@ -24,6 +24,32 @@ class Cari(forms.Form):
     kota = forms.CharField(max_length=100)
     provinsi = forms.ChoiceField(choices=models.daftar_provinsi)
 
+def cmp(a, b):
+    if a[1] > b[1]:
+        return -1
+    elif a[1] < b[1]:
+        return 1
+    return 0
+
+def cari_terdekat(x, y, max=5):
+    daftar = []
+
+    items = models.Toko.objects.all()
+    for toko in items:
+        tx = toko.geo_bujur
+        ty = toko.geo_lintang
+        dx = tx-x
+        dy = ty-y
+        jarak = dx*dx + dy*dy
+
+        daftar.append((toko, jarak))
+
+    return map(lambda x: x[0], sorted(daftar, cmp)[0:max])
+
+def tambah_nama_provinsi(toko):
+    toko.provinsi_nama = models.daftar_provinsi_map[toko.provinsi]
+    return toko
+
 def daftar(request):
     format = request.GET.get('format', 'html')
     if format == 'json':
@@ -77,13 +103,16 @@ def cari(request):
             txt = get_content(url)
             data = json.loads(txt)
             status = data['Status']['code']
-            map = {}
+            peta = {}
             if status == 200:
-                map['x'] = data['Placemark'][0]['Point']['coordinates'][0]
-                map['y'] = data['Placemark'][0]['Point']['coordinates'][1]
-                param['map'] = map
+                x = data['Placemark'][0]['Point']['coordinates'][0]
+                y = data['Placemark'][0]['Point']['coordinates'][1]
+                peta['x'] = x
+                peta['y'] = y
+                peta['alamat'] = data['Placemark'][0]['address']
+                peta['dekat'] = map(tambah_nama_provinsi, cari_terdekat(x, y))
 
-                print map['y'], map['x']
+                param['peta'] = peta
 
     else:
         form = Cari()
