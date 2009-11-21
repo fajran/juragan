@@ -6,8 +6,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'homepage.html'}),
+    # (r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}),
     (r'^\+media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('registration.backends.default.urls')),
+
+    (r'^daftar/$', 'juragan.views.daftar'),
+    (r'^cari/$', 'juragan.views.cari'),
+    (r'^$', 'juragan.views.index'),
 )
