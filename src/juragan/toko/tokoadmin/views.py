@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 
 from juragan import provinsi as prov
 
@@ -58,7 +58,12 @@ def tambah(request):
     if request.method == 'POST':
         form = TokoForm(request.POST)
         if form.is_valid():
-            toko = Toko()
+            toko = Toko(**form.cleaned_data)
+            toko.user = request.user
+            toko.aktif = True
+            toko.save()
+
+            return redirect('/toko/%d/' % toko.id)
             
         ctx['form'] = form
 
