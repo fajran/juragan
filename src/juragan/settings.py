@@ -84,6 +84,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'juragan',
+    'juragan.toko',
+    'juragan.lokasi',
     'registration',
     'django.contrib.markup',
 )

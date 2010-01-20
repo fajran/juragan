@@ -1,3 +1,13 @@
+# Email obfuscation filter using ROT13
+
+# from http://www.djangosnippets.org/snippets/1475/
+
+# Author: worksology
+# Posted: April 28, 2009
+# Language: Python
+# Tags: email filter javascript obfuscation rot13 textmate 
+# Score: 5 (after 5 ratings)
+
 import re
 
 from django.utils.safestring import mark_safe

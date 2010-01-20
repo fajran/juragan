@@ -1,0 +1,15 @@
+{% extends "toko/base.html" %}
+
+{% block content %}
+<h2>Daftar Distributor</h2>
+
+{% for provinsi in daftar %}
+<h3>{{ provinsi.nama }}</h3>
+<ul>
+{% for toko in provinsi.toko %}
+<li><a href="/toko/{{ toko.id }}/">{{ toko.nama }}</a></li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+{% endblock %}

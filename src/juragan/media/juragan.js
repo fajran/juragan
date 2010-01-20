@@ -18,6 +18,7 @@ var juragan = {
     },
 
     show: function(pos) {
+        console.log('show:', pos);
         this.pos = pos;
         this._updatePosition();
         this._placePosition();
@@ -42,15 +43,15 @@ var juragan = {
 
     _loadToko: function() {
         var self = this;
-        $.getJSON('/toko/daftar/?format=json', function(json) {
-            self._setToko(json.toko);
+        $.getJSON('/toko/posisi/', function(json) {
+            self._setToko(json.posisi);
         });
     },
 
     _setToko: function(toko) {
         for (var i=0; i<toko.length; i++) {
             var t = toko[i];
-            t._pos = new google.maps.LatLng(t.y, t.x);
+            t._pos = new google.maps.LatLng(t.lat, t.lng);
             this.toko[t.id] = t;
             this._placeToko(t);
         }
@@ -104,7 +105,6 @@ var juragan = {
         if (toko.website != undefined && toko.website != null) {
             content += '<p class="web"><a target="_blank" href="' + toko.website + '">' + toko.website + '</a></p>';
         }
-        content += '<p class="email">Email: <a href="mailto:' + toko.email + '">' + toko.email + '</a></p>';
         content += '<p class="alamat">' + toko.alamat + '<br/>' + toko.kota + '<br/>' + toko.provinsi + '</p>';
         content += '</div>';
 

@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "toko/base.html" %}
 
 {% block extraheaders %}
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="/+media/juragan.js"></script>
-{% if peta %}
+{% if posisi %}
 <script type="text/javascript">
 $(document).ready(function() {
-    var pos = new google.maps.LatLng({{ peta.y }}, {{ peta.x }});
-    juragan.init($('#map'));
+    var pos = new google.maps.LatLng({{ posisi.lat }}, {{ posisi.lng }});
+    juragan.init($('#peta'));
     juragan.show(pos);
 });
 </script>
@@ -17,19 +17,19 @@ $(document).ready(function() {
 
 {% block content %}
 
-{% if peta %}
+{% if posisi %}
 <div id="dekat">
-<h2>Lokasi Terdekat</h2>
-<p>Asal: {{ peta.alamat }}</p>
-<p>Beberapa distributor Ubuntu terdekat:</p>
+<h2>Distributor Terdekat</h2>
+<p>Asal: {{ posisi.alamat }}</p>
+<p>Beberapa distributor terdekat dengan lokasi Anda:</p>
 <ol>
-    {% for toko in peta.dekat %}
+    {% for toko in dekat %}
     <li><span onclick="juragan.showToko({{ toko.id }});">{{ toko.nama }}</span> 
         [<a href="/toko/{{ toko.id }}/">info</a>]
-        &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.provinsi_nama }}</li>
+        &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.nama_provinsi }}</li>
     {% endfor %}
 </ol>
-<div id="map"></div>
+<div id="peta"></div>
 </div>
 {% endif %}
 
@@ -45,19 +45,17 @@ $(document).ready(function() {
 </form>
 </div>
 
-{% if peta %}{% else %}
+{% if not posisi %}
 <script type="text/javascript">
 $(document).ready(function() {
-    if (($('#map').length == 0) && navigator.geolocation) {
-        console.log('satu');
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {  
-            console.log('dua');
             url = '/lokasi/' + position.coords.latitude + ',' + position.coords.longitude + '/';
             $.getJSON(url, function(json) {
-                console.log('tiga');
-                $('#cari *[name="kota"]').get(0).value = json.kota;
-                $('#cari *[name="alamat"]').get(0).value = json.alamat;
-                $('#cari *[name="provinsi"]').get(0).value = json.provinsi;
+                var lokasi = json.lokasi;
+                $('#cari *[name="kota"]').get(0).value = lokasi.kota;
+                $('#cari *[name="alamat"]').get(0).value = lokasi.alamat;
+                $('#cari *[name="provinsi"]').get(0).value = lokasi.provinsi;
             });
         });  
     };
