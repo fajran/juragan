@@ -135,3 +135,18 @@ ul, ol {
     text-align: center;
 }
 
+#admin.index table tr, #admin.index table th {
+    height: 20px;
+}
+#admin.index table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #EED9C3;
+}
+#admin.index table td p {
+    margin: 0px;
+}
+
+#admin.index div.tambah {
+    margin-top: 30px;
+}

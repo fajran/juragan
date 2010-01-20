@@ -1,12 +1,23 @@
 {% extends "toko/base.html" %}
 
 {% block content %}
+<div id="admin" class="index">
 <h2>Daftar Toko</h2>
 
-<ul>
+<table>
+<tr><th>Nama</th><th></th><th></th></tr>
 {% for t in toko %}
-<li>{{ t.nama }}</li>
+<tr><td><p><a href="/toko/{{ t.id }}/">{{ t.nama }}</a></p>
+        <p>{{ t.kota }}, {{ t.nama_provinsi }}</p></td>
+    <td><p><a href="/toko/admin/{{ t.id }}/">ubah</a></p></td>
+    <td><p><a href="/toko/admin/hapus/{{ t.id }}/">hapus</a></p></td>
+</tr>
 {% endfor %}
-</ul>
+</table>
 
+<div class="tambah">
+<p><a href="/toko/admin/tambah/">Tambah Toko</a></p>
+</div>
+
+</div>
 {% endblock %}
