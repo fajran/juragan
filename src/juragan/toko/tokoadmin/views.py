@@ -7,6 +7,8 @@ from juragan import provinsi as prov
 
 from juragan.toko.models import Toko
 
+daftar_provinsi = (('', '-- pilih provinsi --'),) + prov.daftar_provinsi
+
 class TokoForm(forms.Form):
     nama = forms.CharField(max_length=200)
     email = forms.EmailField()
@@ -21,7 +23,7 @@ class TokoForm(forms.Form):
 
     alamat = forms.CharField(max_length=200)
     kota = forms.CharField(max_length=100)
-    provinsi = forms.ChoiceField(choices=prov.daftar_provinsi)
+    provinsi = forms.ChoiceField(choices=daftar_provinsi)
 
     geo_lintang = forms.FloatField(label="Lintang",
                                    required=False,
