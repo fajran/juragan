@@ -137,12 +137,6 @@ def cari(request):
     return render_to_response('cari.html', param,
         context_instance=RequestContext(request))
 
-def index(request):
-    form = Cari()
-    return render_to_response('index.html', {
-            'form': form
-        }, context_instance=RequestContext(request))
-
 def toko(request, toko_id):
     toko = get_object_or_404(models.Toko, pk=toko_id)
 

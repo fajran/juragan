@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     (r'^distributor/$', 'juragan.views.distributor'),
     (r'^bantuan/$', direct_to_template, 
         {'template': 'bantuan.html'}),
-    (r'^$', 'juragan.views.index'),
+    (r'^$', redirect_to, {'url': '/cari/'})
 )
