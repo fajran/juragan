@@ -12,16 +12,48 @@ var juragan = {
     init: function(canvas) {
         this.canvas = canvas;
         this.map = new google.maps.Map(canvas.get(0), {
-            zoom: 13,
+            zoom: 3,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
     },
 
-    show: function(pos) {
+    show: function(pos, dekat) {
         this.pos = pos;
         this._updatePosition();
         this._placePosition();
         this._loadToko();
+
+        if (dekat != undefined) {
+            this._setBounds(pos, dekat);
+        }
+    },
+
+    _setBounds: function(a, b) {
+        var alat = a.lat();
+        var alng = a.lng();
+        var blat = b.lat();
+        var blng = b.lng();
+
+        var w = Math.abs(blng - alng);
+        var h = Math.abs(blat - alat);
+        var w5 = w/5.0;
+        var h5 = h/5.0;
+        
+        var south = alat < blat ? alat : blat;
+        var north = alat > blat ? alat : blat;
+        var west = alng < blng ? alng : blng;
+        var east = alng > blng ? alng : blng;
+
+        east -= w5;
+        west += w5;
+        south -= h5;
+        north += h5;
+
+        var sw = new google.maps.LatLng(south, west);
+        var ne = new google.maps.LatLng(north, east);
+
+        var bounds = new google.maps.LatLngBounds(sw, ne);
+        this.map.fitBounds(bounds);
     },
 
     _updatePosition: function() {

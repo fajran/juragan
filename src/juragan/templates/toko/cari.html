@@ -8,8 +8,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
     var pos = new google.maps.LatLng({{ posisi.lat }}, {{ posisi.lng }});
+    {% if dekat %}
+    var dekat = new google.maps.LatLng({{ dekat.0.geo_lintang }}, {{ dekat.0.geo_bujur }});
+    {% else %}
+    var dekat = undefined;
+    {% endif %}
     juragan.init($('#peta'));
-    juragan.show(pos);
+    juragan.show(pos, dekat);
 });
 </script>
 {% endif %}
