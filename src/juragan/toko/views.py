@@ -19,9 +19,9 @@ INDONESIA = {'lat': -0.7892750,
              'alamat': 'Indonesia'}
 
 def _cari_posisi(*param):
-    param = filter(lambda x: x is not None, 
-                filter(lambda x: x != '',
-                    map(lambda x: x.strip(), param)))
+    param = filter(lambda x: x != '',
+                map(lambda x: x.strip(), 
+                    filter(lambda x: x is not None, param)))
     
     while len(param) > 0:
         status, hasil = utils.cari_posisi(*param)
