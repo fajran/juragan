@@ -3,7 +3,7 @@
     width: 70px;
 }
 
-#peta {
+#cari #peta {
     width: 450px;
     height: 450px;
     margin: 20px 0 40px 0;
@@ -104,7 +104,7 @@ ul, ol {
     width: 250px;
 }
 #admin.tambah form p.koordinat input[type="text"] {
-    width: 75px;
+    width: 100px;
 }
 #admin.tambah fieldset {
     padding: 10px 5px;
@@ -120,5 +120,14 @@ ul, ol {
 }
 #admin.tambah div.submit p {
     text-align: right;
+}
+
+#admin.tambah #peta {
+    width: 370px;
+    height: 250px;
+    margin-bottom: 5px;
+}
+#admin.tambah .cari-koordinat-gm > p {
+    text-align: center;
 }
 
