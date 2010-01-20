@@ -6,6 +6,10 @@
 <div id="toko">
 <h2>{{ toko.nama }}</h2>
 
+{% ifequal user toko.user %}
+<div class="edit"><p><a href="/toko/admin/{{ toko.id }}/">ubah data</a></p></div>
+{% endifequal %}
+
 <div id="kontak">
 <p>{{ toko.alamat }}</p>
 <p>{{ toko.kota }}, {{ toko.nama_provinsi }}</p>

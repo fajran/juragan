@@ -49,6 +49,11 @@
     margin-top: 10px;
 }
 
+#toko div.edit p {
+    text-align: right;
+    float: right;
+}
+
 #header h1 a {
     background: inherit;
     text-decoration: inherit;
