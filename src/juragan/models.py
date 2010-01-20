@@ -41,14 +41,19 @@ daftar_provinsi = (
 	('ID-PA','Papua'), # Irian Jaya Timur, Irian Jaya
 )
 
+daftar_provinsi_map_reverse = {
+    "irian jaya barat": "ID-PB",
+    "irian jaya timur": "ID-PA",
+    "irian jaya": "ID-PA",
+}
+for k, v in daftar_provinsi:
+    daftar_provinsi_map_reverse[v.lower()] = k
+
 daftar_provinsi_map = {}
 for k, v in daftar_provinsi:
     daftar_provinsi_map[k] = v
 
 # Alternatif nama menurut Google Maps
-daftar_provinsi_map["Irian Jaya Barat"] = "ID-PB"
-daftar_provinsi_map["Irian Jaya Timur"] = "ID-PA"
-daftar_provinsi_map["Irian Jaya"] = "ID-PA"
 
 class Toko(models.Model):
     user = models.ForeignKey(User)
