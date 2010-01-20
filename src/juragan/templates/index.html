@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>Cari Juragan</h2>
+<h2>Cari Distributor</h2>
 
 <div id="cari">
 <form method="post" action="/cari/">
@@ -13,6 +13,19 @@
 <p><input type="submit" value="Cari"/></p>
 </form>
 </div>
+
+<script type="text/javascript">
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {  
+        url = '/lokasi/' + position.coords.latitude + ',' + position.coords.longitude + '/';
+        $.getJSON(url, function(json) {
+            $('#cari *[name="kota"]').get(0).value = json.kota;
+            $('#cari *[name="alamat"]').get(0).value = json.alamat;
+            // $('#cari *[name="propinsi"]')[0].value = json.propinsi;
+        });
+    });  
+}
+</script>
 
 {% endblock %}
 
