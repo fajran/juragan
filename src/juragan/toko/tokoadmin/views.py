@@ -43,8 +43,24 @@ class TokoForm(forms.Form):
 
 
 @login_required
-def toko(request, toko_id):
-    pass
+def ubah(request, toko_id):
+    toko = get_object_or_404(Toko, pk=toko_id, user=request.user)
+    if request.method == 'POST':
+        form = TokoForm(request.POST)
+        if form.is_valid():
+            for key in form.cleaned_data:
+                toko.__dict__[key] = form.cleaned_data[key]
+            toko.save()
+
+            return redirect('/toko/%d/' % toko.id)
+
+    else:
+        form = TokoForm(toko.__dict__)
+
+    ctx = {'form': form,
+           'tipe': 'edit'}
+    return render_to_response('toko/admin/tambah.html', ctx,
+                              context_instance=RequestContext(request))
 
 @login_required
 def hapus(request):
