@@ -18,7 +18,6 @@ var juragan = {
     },
 
     show: function(pos) {
-        console.log('show:', pos);
         this.pos = pos;
         this._updatePosition();
         this._placePosition();
