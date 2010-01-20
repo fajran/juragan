@@ -71,3 +71,54 @@ ul, ol {
     height: inherit;
 }
 
+#admin.tambah form label {
+    float: left;
+    width: 65px;
+    text-align: right;
+    margin-left: -75px;
+    padding: 3px 10px 0 0;
+}
+#admin.tambah form fieldset > div {
+    margin: 0 0 10px 70px;
+}
+#admin.tambah form fieldset > div p {
+    margin: 0px;
+}
+#admin.tambah form fieldset > div.error ul.errorlist {
+    color: red;
+    margin: 0px;
+}
+#admin.tambah form fieldset > div.error ul.errorlist li {
+    background: none;
+    padding-left: 2px;
+}
+#admin.tambah form fieldset > div p.help {
+    display: block;
+    margin-top: 3px;
+}
+#admin.tambah form fieldset > div.error input {
+    background: #FFFFBF;
+    padding: 1px;
+}
+#admin.tambah form input[type="text"] {
+    width: 250px;
+}
+#admin.tambah form p.koordinat input[type="text"] {
+    width: 75px;
+}
+#admin.tambah fieldset {
+    padding: 10px 5px;
+    border-width: 1px 0 0 0;
+}
+#admin.tambah fieldset legend {
+    padding: 0 5px;
+}
+#admin.tambah div.submit {
+    background: #eee;
+    margin: 50px 0 0 0;
+    padding: 5px;
+}
+#admin.tambah div.submit p {
+    text-align: right;
+}
+

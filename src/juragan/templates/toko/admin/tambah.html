@@ -1,0 +1,118 @@
+{% extends "toko/base.html" %}
+
+{% block content %}
+<div id="admin" class="tambah">
+<h2>Tambah Toko</h2>
+
+<form method="post">
+
+<fieldset>
+<legend>Informasi Umum</legend>
+
+<div{% if form.nama.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.nama.label_tag }} {{ form.nama }}</p>
+    {{ form.nama.errors }}
+    {% if form.nama.help_text %}
+    <p class="help">{{ form.nama.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.website.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.website.label_tag }} {{ form.website }}</p>
+    {{ form.website.errors }}
+    {% if form.website.help_text %}
+    <p class="help">{{ form.website.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.email.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.email.label_tag }} {{ form.email }}</p>
+    {{ form.email.errors }}
+    {% if form.email.help_text %}
+    <p class="help">{{ form.email.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.telepon.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.telepon.label_tag }} {{ form.telepon }}</p>
+    {{ form.telepon.errors }}
+    {% if form.telepon.help_text %}
+    <p class="help">{{ form.telepon.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.deskripsi.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.deskripsi.label_tag }} {{ form.deskripsi }}</p>
+    {{ form.deskripsi.errors }}
+    {% if form.deskripsi.help_text %}
+    <p class="help">{{ form.deskripsi.help_text }}</p>
+    {% endif %}
+</div>
+
+</fieldset>
+<fieldset>
+<legend>Lokasi</legend>
+
+<div{% if form.alamat.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.alamat.label_tag }} {{ form.alamat }}</p>
+    {{ form.alamat.errors }}
+    {% if form.alamat.help_text %}
+    <p class="help">{{ form.alamat.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.kota.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.kota.label_tag }} {{ form.kota }}</p>
+    {{ form.kota.errors }}
+    {% if form.kota.help_text %}
+    <p class="help">{{ form.kota.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.provinsi.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.provinsi.label_tag }} {{ form.provinsi }}</p>
+    {{ form.provinsi.errors }}
+    {% if form.provinsi.help_text %}
+    <p class="help">{{ form.provinsi.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.geo_lintang.errors or form.geo_bujur.errors %} class="error"{% endif %}>
+    <p class="field koordinat"><label>Koordinat</label>
+        lintang {{ form.geo_lintang }}
+        bujur {{ form.geo_bujur }}
+    </p>
+    {{ form.geo_lintang.errors }}
+    {{ form.geo_bujur.errors }}
+    <p class="help">Koordinat lintang dan bujur.</p>
+</div>
+
+<div><p>Klik untuk mencari koordinat dari
+<button>alamat</button> atau <button>Google Maps</button>
+</p></div>
+
+</fieldset>
+<fieldset>
+<legend>Katalog</legend>
+
+<div{% if form.katalog.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.katalog.label_tag }} {{ form.katalog }}</p>
+    {{ form.katalog.errors }}
+    {% if form.katalog.help_text %}
+    <p class="help">{{ form.katalog.help_text }}</p>
+    {% endif %}
+</div>
+
+<div{% if form.produk.errors %} class="error"{% endif %}>
+    <p class="field">{{ form.produk.label_tag }} {{ form.produk }}</p>
+    {{ form.produk.errors }}
+    {% if form.produk.help_text %}
+    <p class="help">{{ form.produk.help_text }}</p>
+    {% endif %}
+</div>
+
+<div class="submit"><p class="field"><input type="submit" value="Tambah Toko"/></p></div>
+</form>
+
+</div>
+{% endblock %}
