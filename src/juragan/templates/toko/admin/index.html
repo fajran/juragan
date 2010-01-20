@@ -3,14 +3,10 @@
 {% block content %}
 <h2>Daftar Toko</h2>
 
-{% if toko %}
 <ul>
 {% for t in toko %}
 <li>{{ t.nama }}</li>
 {% endfor %}
 </ul>
-{% else %}
-<p>Anda belum memasukkan informasi mengenai toko Anda.</p>
-{% endif %}
 
 {% endblock %}

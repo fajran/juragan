@@ -100,6 +100,9 @@ def tambah(request):
 @login_required
 def index(request):
     toko = Toko.objects.filter(user=request.user)
+    if len(toko) == 0:
+        return redirect('/toko/admin/tambah/')
+
     ctx = {'toko': toko}
     return render_to_response('toko/admin/index.html', ctx,
                               context_instance=RequestContext(request))
