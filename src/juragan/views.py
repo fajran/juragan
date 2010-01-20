@@ -34,7 +34,7 @@ def cmp(a, b):
 def cari_terdekat(x, y, max=5):
     daftar = []
 
-    items = models.Toko.objects.all()
+    items = models.Toko.objects.filter(aktif=True)
     for toko in items:
         tx = toko.geo_bujur
         ty = toko.geo_lintang
@@ -73,7 +73,7 @@ def daftar(request):
         data = {}
         data['toko'] = []
 
-        toko = models.Toko.objects.all()
+        toko = models.Toko.objects.filter(aktif=True)
         for t in toko:
             dd = {
                 'id': t.id,
@@ -192,7 +192,7 @@ def lokasi(request, posisi):
     return HttpResponse(lokasi, content_type="text/plain")
 
 def distributor(request):
-    toko = models.Toko.objects.all()
+    toko = models.Toko.objects.filter(aktif=True)
     daftar = {}
     for item in toko:
         p = item.provinsi

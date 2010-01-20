@@ -74,6 +74,8 @@ class Toko(models.Model):
     produk = models.TextField(null=True, blank=True)
     katalog = models.URLField(null=True, blank=True)
 
+    aktif = models.BooleanField(default=False)
+
     class Meta:
         verbose_name_plural = "Daftar Toko"
 
