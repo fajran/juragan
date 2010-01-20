@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # http://id.wikipedia.org/wiki/Daftar_provinsi_Indonesia
 
 daftar_provinsi = (
-	('ID-AC','Aceh'),
+	('ID-AC','Nangro Aceh Darussalam'),
 	('ID-SU','Sumatera Utara'),
 	('ID-SB','Sumatera Barat'),
 	('ID-RI','Riau'),
@@ -14,12 +14,12 @@ daftar_provinsi = (
 	('ID-SS','Sumatera Selatan'),
 	('ID-BE','Bengkulu'),
 	('ID-LA','Lampung'),
-	('ID-BB','Kepulauan Bangka Belitung'),
+	('ID-BB','Bangka Belitung'),
 	('ID-KR','Kepulauan Riau'),
-	('ID-JK','Daerah Khusus Ibukota Jakarta'),
+	('ID-JK','Jakarta'),
 	('ID-JB','Jawa Barat'),
 	('ID-JT','Jawa Tengah'),
-	('ID-YO','Daerah Istimewa Yogyakarta'),
+	('ID-YO','Yogyakarta'),
 	('ID-JI','Jawa Timur'),
 	('ID-BT','Banten'),
 	('ID-BA','Bali'),
@@ -37,13 +37,18 @@ daftar_provinsi = (
 	('ID-SR','Sulawesi Barat'),
 	('ID-MA','Maluku'),
 	('ID-MU','Maluku Utara'),
-	('ID-PB','Papua Barat'),
-	('ID-PA','Papua'),
+	('ID-PB','Papua Barat'), # Irian Jaya Barat
+	('ID-PA','Papua'), # Irian Jaya Timur, Irian Jaya
 )
 
 daftar_provinsi_map = {}
 for k, v in daftar_provinsi:
     daftar_provinsi_map[k] = v
+
+# Alternatif nama menurut Google Maps
+daftar_provinsi_map["Irian Jaya Barat"] = "ID-PB"
+daftar_provinsi_map["Irian Jaya Timur"] = "ID-PA"
+daftar_provinsi_map["Irian Jaya"] = "ID-PA"
 
 class Juragan(models.Model):
     user = models.ForeignKey(User, unique=True)

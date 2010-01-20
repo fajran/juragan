@@ -50,6 +50,23 @@ def tambah_nama_provinsi(toko):
     toko.provinsi_nama = models.daftar_provinsi_map[toko.provinsi]
     return toko
 
+def cmp_alamat(a, b):
+    if a[0] < b[0]:
+        return 1
+    elif a[0] > b[0]:
+        return -1
+    else:
+        return 0
+
+def ambil_alamat(data):
+    return data['Placemark'][0]
+    items = []
+    for d in data['Placemark']:
+        items.append((d['AddressDetails']['Accuracy'], d))
+    daftar = sorted(items, cmp_alamat)
+
+    return daftar[0][1]
+
 def daftar(request):
     format = request.GET.get('format', 'html')
     if format == 'json':
@@ -106,11 +123,12 @@ def cari(request):
             status = data['Status']['code']
             peta = {}
             if status == 200:
-                x = data['Placemark'][0]['Point']['coordinates'][0]
-                y = data['Placemark'][0]['Point']['coordinates'][1]
+                data = ambil_alamat(data)
+                x = data['Point']['coordinates'][0]
+                y = data['Point']['coordinates'][1]
                 peta['x'] = x
                 peta['y'] = y
-                peta['alamat'] = data['Placemark'][0]['address']
+                peta['alamat'] = data['address']
                 peta['dekat'] = map(tambah_nama_provinsi, cari_terdekat(x, y))
 
                 param['peta'] = peta
@@ -129,4 +147,43 @@ def index(request):
     return render_to_response('index.html', {
             'form': form
         }, context_instance=RequestContext(request))
+
+def toko(request, toko_id):
+    toko = get_object_or_404(models.Toko, pk=toko_id)
+    return render_to_response('toko.html', {
+            'form': form
+        }, context_instance=RequestContext(request))
+
+def lokasi(request, posisi):
+    (y, x) = posisi.split(',')
+    param = {
+        'q': posisi,
+        'output': 'json',
+        'sensor': 'false',
+        'key': settings.GMAPS_API_KEY
+    }
+    url = "http://maps.google.com/maps/geo?%s" % urllib.urlencode(param)
+    txt = get_content(url)
+    data = json.loads(txt)
+
+    data = ambil_alamat(data)
+    akurasi = data['AddressDetails']['Accuracy']
+
+    aa = data['AddressDetails']['Country']['AdministrativeArea']
+
+    provinsi, kota, alamat = None, None, None
+
+    if akurasi >= 2:
+        provinsi = aa['AdministrativeAreaName']
+    if akurasi >= 4:
+        kota = aa['Locality']['LocalityName']
+    if akurasi >= 6:
+        alamat = aa['Locality']['DependentLocality']['Thoroughfare']['ThoroughfareName']
+
+    kota = None
+    hasil = {'provinsi': provinsi, 'kota': kota, 'alamat': alamat}
+    lokasi = json.dumps(hasil)
+
+    return HttpResponse(lokasi, content_type="text/plain")
+
 
