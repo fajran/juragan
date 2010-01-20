@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "juragan",
-    version = "1.0",
+    version = "0.2",
     url = 'http://www.ubuntu-id.org/',
     license = 'BSD',
     description = 'Distribusi DVD Repository Ubuntu',
