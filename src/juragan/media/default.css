@@ -140,8 +140,6 @@ margin: 0px auto 0px auto;
 
 #inner
 {
-background-image: url('images/cbg2.gif');
-background-repeat: repeat-y;
 }
 
 #header
@@ -207,10 +205,10 @@ color: #fff;
 #xbgA
 {
 height: 31px;
-width: 500px;
+width: 698px;
 position: absolute;
 top: 0px;
-background-image: url('images/cbg1.gif');
+background-image: url('images/cbg1.png');
 z-index: 1;
 }
 
@@ -218,17 +216,15 @@ z-index: 1;
 {
 position: relative;
 height: 32px;
-width: 500px;
-background-image: url('images/cbg3.gif');
+width: 698px;
 z-index: 1;
 }
 
 #main
 {
 position: relative;
-width: 500px;
-margin: 3px -500px 0px 0px;
-float: left;
+width: 698px;
+margin: 3px 0 0 0;
 }
 
 #main_inner
