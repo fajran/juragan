@@ -113,13 +113,17 @@ ul, ol {
 #admin.tambah fieldset legend {
     padding: 0 5px;
 }
-#admin.tambah div.submit {
+#admin div.submit {
     background: #eee;
     margin: 50px 0 0 0;
     padding: 5px;
 }
-#admin.tambah div.submit p {
+#admin div.submit p {
     text-align: right;
+    margin: 0px;
+}
+#admin div.submit p span {
+    margin-right: 10px;
 }
 
 #admin.tambah #peta {

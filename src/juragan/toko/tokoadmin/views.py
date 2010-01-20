@@ -63,8 +63,15 @@ def ubah(request, toko_id):
                               context_instance=RequestContext(request))
 
 @login_required
-def hapus(request):
-    pass
+def hapus(request, toko_id):
+    toko = get_object_or_404(Toko, pk=toko_id, user=request.user)
+
+    if request.method == 'POST':
+        toko.delete()
+        return redirect('/toko/admin/')
+
+    return render_to_response('toko/admin/hapus.html', {'toko': toko},
+                              context_instance=RequestContext(request))
 
 
 @login_required

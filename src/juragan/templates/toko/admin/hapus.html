@@ -1,0 +1,22 @@
+{% extends "toko/base.html" %}
+
+{% block content %}
+<div id="admin" class="hapus">
+<h2>Hapus Toko</h2>
+
+<p>Apakah Anda yakin untuk menghapus Toko berikut ini?</p>
+
+<blockquote>
+<p><a href="/toko/{{ toko.id }}/"><strong>{{ toko.nama }}</strong></a></p>
+<p>{{ toko.alamat }}, {{ toko.kota }}, {{ toko.nama_provinsi }}</p>
+</blockquote>
+
+<div class="submit">
+<form method="post">
+<p><span><a href="/toko/admin/">Kembali</a></span>
+<input type="submit" value="Hapus"/>
+</form>
+</div>
+
+</div>
+{% endblock %}
