@@ -22,6 +22,9 @@
 				<li><a href="/toko/">daftar distributor</a></li>
 				<li><a href="/cari/">cari distributor</a></li>
 				<li><a href="/bantuan/">bantuan</a></li>
+                {% if user.is_authenticated %}
+				<li><a href="/toko/admin/">admin</a></li>
+                {% endif %}
 			</ul>
 		</div>
 	</div>
@@ -51,7 +54,15 @@
 <div id="outer2"></div>
 
 <div id="footer">
-	&copy; 2010 DistributorUbuntu. Design by <a href="http://www.nodethirtythree.com">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
+	&copy; 2010 DistributorUbuntu. 
+    Design by <a href="http://www.nodethirtythree.com">NodeThirtyThree</a> 
+    + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>
+    {% if user.is_authenticated %}
+    + <a href="/accounts/logout/">Logout</a>
+    {% else %}
+    + <a href="/accounts/login/">Login</a>
+    {% endif %}
+
 </div>
 
 </body>
