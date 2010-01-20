@@ -9,8 +9,8 @@ from juragan.utils import respon_json_ok, respon_json_error
 from juragan.toko import utils
 
 class CariForm(forms.Form):
-    alamat = forms.CharField(max_length=200)
-    kota = forms.CharField(max_length=100)
+    alamat = forms.CharField(max_length=200, required=False)
+    kota = forms.CharField(max_length=100, required=False)
     provinsi = forms.ChoiceField(choices=prov.daftar_provinsi)
 
 
