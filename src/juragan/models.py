@@ -62,7 +62,6 @@ class Toko(models.Model):
     website = models.URLField(null=True, blank=True)
     email = models.EmailField()
     telepon = models.CharField(max_length=200, null=True, blank=True)
-    fax = models.CharField(max_length=200, null=True, blank=True)
 
     deskripsi = models.TextField(null=True, blank=True)
 
