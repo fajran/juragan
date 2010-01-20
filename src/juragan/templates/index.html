@@ -21,7 +21,7 @@ if (navigator.geolocation) {
         $.getJSON(url, function(json) {
             $('#cari *[name="kota"]').get(0).value = json.kota;
             $('#cari *[name="alamat"]').get(0).value = json.alamat;
-            // $('#cari *[name="propinsi"]')[0].value = json.propinsi;
+            $('#cari *[name="provinsi"]').get(0).value = json.provinsi;
         });
     });  
 }

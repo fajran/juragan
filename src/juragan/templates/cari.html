@@ -43,5 +43,20 @@ $(document).ready(function() {
 </form>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    if (($('#map').length == 0) && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {  
+            url = '/lokasi/' + position.coords.latitude + ',' + position.coords.longitude + '/';
+            $.getJSON(url, function(json) {
+                $('#cari *[name="kota"]').get(0).value = json.kota;
+                $('#cari *[name="alamat"]').get(0).value = json.alamat;
+                $('#cari *[name="provinsi"]').get(0).value = json.provinsi;
+            });
+        });  
+    };
+});
+</script>
+
 {% endblock %}
 

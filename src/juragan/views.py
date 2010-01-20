@@ -180,12 +180,12 @@ def lokasi(request, posisi):
 
     if akurasi >= 2:
         provinsi = aa['AdministrativeAreaName']
+        provinsi = models.daftar_provinsi_map_reverse.get(provinsi, None)
     if akurasi >= 4:
         kota = aa['Locality']['LocalityName']
     if akurasi >= 6:
         alamat = aa['Locality']['DependentLocality']['Thoroughfare']['ThoroughfareName']
 
-    kota = None
     hasil = {'provinsi': provinsi, 'kota': kota, 'alamat': alamat}
     lokasi = json.dumps(hasil)
 

@@ -49,7 +49,25 @@
     margin-top: 10px;
 }
 
+#header h1 a {
+    background: inherit;
+    text-decoration: inherit;
+    color: inherit;
+}
+#header h1 a:hover {
+    text-decoration: underline;
+}
+
 ul, ol {
     margin-bottom: 14px;
+}
+
+#bantuan .jawaban h3 {
+    background: none;
+    padding-left: 0px;
+    text-transform: none;
+    text-decoration: underline;
+    margin: 0 0 5px 0;
+    height: inherit;
 }
 
