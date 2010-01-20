@@ -32,5 +32,5 @@ class Toko(models.Model):
         return "%s (%s)" % (self.nama, self.kota)
 
     def nama_provinsi(self):
-        return provinsi.get_nama(self.provinsi)
+        return prov.get_nama(self.provinsi)
 
