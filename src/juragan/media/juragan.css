@@ -1,3 +1,30 @@
+#cari form label {
+    float: left;
+    width: 70px;
+}
+
+#map {
+    width: 450px;
+    height: 450px;
+    margin: 20px 0 40px 0;
+}
+
+#dekat ol li span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#dekat ol li span:hover {
+    text-decoration: none;
+}
+
+.gmnoprint .nama {
+    font-size: 14px;
+}
+.gmnoprint p {
+    margin: 0px !important;
+}
+
+
 #toko-info h1 {
     font-size: 16px;
 }
@@ -7,3 +34,22 @@
 #toko-info h1 a:hover {
     background: inherit;
 }
+
+#toko #kontak li img {
+    vertical-align: bottom;
+    padding-right: 5px;
+}
+#toko #kontak li {
+    line-height: 16px;
+}
+#toko #kontak p {
+    margin: 0px;
+}
+#toko #kontak ul {
+    margin-top: 10px;
+}
+
+ul, ol {
+    margin-bottom: 14px;
+}
+

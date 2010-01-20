@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'juragan',
     'registration',
+    'django.contrib.markup',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7

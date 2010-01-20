@@ -405,30 +405,3 @@ background-color: #7DAFBD;
 color: #E8FAFF;
 }
 
-#cari form label {
-    float: left;
-    width: 70px;
-}
-
-#map {
-    width: 450px;
-    height: 450px;
-    margin: 20px 0 40px 0;
-}
-
-#dekat ol li span {
-    cursor: pointer;
-    text-decoration: underline;
-}
-#dekat ol li span:hover {
-    text-decoration: none;
-}
-
-.gmnoprint .nama {
-    font-size: 14px;
-}
-.gmnoprint p {
-    margin: 0px !important;
-}
-
-

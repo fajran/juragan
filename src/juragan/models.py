@@ -50,46 +50,32 @@ daftar_provinsi_map["Irian Jaya Barat"] = "ID-PB"
 daftar_provinsi_map["Irian Jaya Timur"] = "ID-PA"
 daftar_provinsi_map["Irian Jaya"] = "ID-PA"
 
-class Juragan(models.Model):
-    user = models.ForeignKey(User, unique=True)
+class Toko(models.Model):
+    user = models.ForeignKey(User)
+
     nama = models.CharField(max_length=200)
     website = models.URLField(null=True, blank=True)
     email = models.EmailField()
+    telepon = models.CharField(max_length=200, null=True, blank=True)
+    fax = models.CharField(max_length=200, null=True, blank=True)
+
     deskripsi = models.TextField(null=True, blank=True)
 
-    class Meta:
-        verbose_name_plural = "Daftar Juragan"
-
-    def __unicode__(self):
-        return self.nama
-
-class Produk(models.Model):
-    nama = models.CharField(max_length=200)
-
-    class Meta:
-        verbose_name_plural = "Daftar Produk"
-
-    def __unicode__(self):
-        return self.nama
-
-class Toko(models.Model):
-    juragan = models.ForeignKey(Juragan)
     alamat = models.CharField(max_length=200)
     kota = models.CharField(max_length=100)
     provinsi = models.CharField(max_length=5, choices=daftar_provinsi)
     geo_lintang = models.FloatField(null=True, blank=True)
     geo_bujur = models.FloatField(null=True, blank=True)
 
-    produk = models.ManyToManyField(Produk, null=True, blank=True)
+    produk = models.TextField(null=True, blank=True)
+    katalog = models.URLField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Daftar Toko"
 
     def __unicode__(self):
-        return "%s (%s)" % (self.juragan.nama, self.kota)
+        return "%s (%s)" % (self.nama, self.kota)
 
 
-admin.site.register(Juragan)
 admin.site.register(Toko)
-admin.site.register(Produk)
 

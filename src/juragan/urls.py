@@ -11,9 +11,9 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('registration.backends.default.urls')),
 
-    (r'^daftar/$', 'juragan.views.daftar'),
     (r'^cari/$', 'juragan.views.cari'),
     (r'^lokasi/(?P<posisi>.+)/$', 'juragan.views.lokasi'),
+    (r'^toko/daftar/$', 'juragan.views.daftar'),
     (r'^toko/(?P<toko_id>\d+)/$', 'juragan.views.toko'),
     (r'^$', 'juragan.views.index'),
 )

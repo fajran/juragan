@@ -71,31 +71,25 @@ def daftar(request):
     format = request.GET.get('format', 'html')
     if format == 'json':
         data = {}
-        data['juragan'] = []
+        data['toko'] = []
 
-        juragan = models.Juragan.objects.all()
-        for item in juragan:
-            d = {
-                'id': item.id,
-                'nama': item.nama,
-                'website': item.website,
-                'email': item.email,
-                'toko': []
+        toko = models.Toko.objects.all()
+        for t in toko:
+            dd = {
+                'id': t.id,
+
+                'email': t.email,
+                'website': t.website,
+                'nama': t.nama,
+
+                'alamat': t.alamat,
+                'kota': t.kota,
+                'provinsi': models.daftar_provinsi_map[t.provinsi],
+
+                'x': t.geo_bujur,
+                'y': t.geo_lintang,
             }
-
-            toko = models.Toko.objects.filter(juragan=item)
-            for t in toko:
-                dd = {
-                    'id': t.id,
-                    'alamat': t.alamat,
-                    'kota': t.kota,
-                    'provinsi': models.daftar_provinsi_map[t.provinsi],
-                    'x': t.geo_bujur,
-                    'y': t.geo_lintang
-                }
-                d['toko'].append(dd)
-
-            data['juragan'].append(d)
+            data['toko'].append(dd)
 
         data = json.dumps(data)
         return HttpResponse(data, content_type="text/plain")
@@ -151,8 +145,18 @@ def index(request):
 
 def toko(request, toko_id):
     toko = get_object_or_404(models.Toko, pk=toko_id)
+
+    produk = toko.produk
+    if produk is not None:
+        produk = filter(lambda x: x != '',
+                    map(lambda x: x.strip(),
+                        produk.splitlines()))
+
+    toko.provinsi_nama = models.daftar_provinsi_map[toko.provinsi]
+
     return render_to_response('toko.html', {
-            'form': form
+            'toko': toko,
+            'produk': produk,
         }, context_instance=RequestContext(request))
 
 def lokasi(request, posisi):

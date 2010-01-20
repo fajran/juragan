@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load juragan_tags %}
+
+{% block content %}
+<div id="toko">
+<h2>{{ toko.nama }}</h2>
+
+<div id="kontak">
+<p>{{ toko.alamat }}</p>
+<p>{{ toko.kota }}, {{ toko.provinsi_nama }}</p>
+<ul>
+<li><img src="/+media/icons/email.png" alt="email">
+    {{ toko.email|obfuscate }}</li>
+{% if toko.website %}
+<li><img src="/+media/icons/house.png" alt="website">
+    <a href="{{ toko.website }}">{{ toko.website }}</a></li>
+{% endif %}
+</ul>
+</div>
+
+{% if toko.deskripsi %}
+<div id="#deskripsi">
+{{ toko.deskripsi|markdown:"safe" }}
+</div>
+{% endif %}
+
+{% if produk or toko.katalog %}
+<h3>Produk</h3>
+{% if toko.katalog %}
+<p>Katalog online: <a href="{{ toko.katalog }}">{{ toko.katalog }}</a></p>
+{% endif %}
+{% if produk %}
+<ul>
+{% for item in produk %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endif %}
+
+
+</div>
+{% endblock %}

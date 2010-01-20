@@ -22,7 +22,7 @@ $(document).ready(function() {
 <p>Beberapa distributor Ubuntu terdekat:</p>
 <ol>
     {% for toko in peta.dekat %}
-    <li><span onclick="juragan.showToko({{ toko.id }});">{{ toko.juragan.nama }}</span> 
+    <li><span onclick="juragan.showToko({{ toko.id }});">{{ toko.nama }}</span> 
         [<a href="/toko/{{ toko.id }}/">info</a>]
         &raquo; {{ toko.alamat }}, {{ toko.kota }}, {{ toko.provinsi_nama }}</li>
     {% endfor %}
