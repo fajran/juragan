@@ -16,7 +16,7 @@ daftar_provinsi = (
     ('ID-LA','Lampung'),
     ('ID-BB','Kepulauan Bangka Belitung'),
     ('ID-KR','Kepulauan Riau'),
-    ('ID-JK','DKI Jakarta'),
+    ('ID-JK','Daerah Khusus Ibukota Jakarta'),
     ('ID-JB','Jawa Barat'),
     ('ID-JT','Jawa Tengah'),
     ('ID-YO','Daerah Khusus Yogyakarta'),
