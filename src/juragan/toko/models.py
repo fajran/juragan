@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from juragan import provinsi
+from juragan import provinsi as prov
 
 class Toko(models.Model):
     user = models.ForeignKey(User)
@@ -16,7 +16,7 @@ class Toko(models.Model):
     alamat = models.CharField(max_length=200)
     kota = models.CharField(max_length=100)
     provinsi = models.CharField(max_length=5,
-                                choices=provinsi.daftar_provinsi)
+                                choices=prov.daftar_provinsi)
     geo_lintang = models.FloatField(null=True, blank=True)
     geo_bujur = models.FloatField(null=True, blank=True)
 
