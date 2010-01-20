@@ -21,37 +21,86 @@ def _validasi_posisi(posisi):
     return True
 
 def _ambil_lokasi(data):
-    data = gmaps_ambil_alamat(data)
 
-    akurasi = data['AddressDetails']['Accuracy']
+    negara = None
+    provinsi = None
+    provinsi_nama = None
+    kota = None
+    alamat = None
+    lat = None
+    lng = None
+    west = None
+    east = None
+    north = None
+    south = None
 
-    area = data['AddressDetails']['Country']['AdministrativeArea']
+    try:
+        data = gmaps_ambil_alamat(data)
+        print data
+    
+        lng, lat = data['Point']['coordinates'][0:2]
+        box = data['ExtendedData']['LatLonBox']
+        north = box['north']
+        south = box['south']
+        east = box['east']
+        west = box['west']
+    
+        area = None
+    
+        akurasi = data['AddressDetails']['Accuracy']
+    
+        if akurasi >= 1:
+            negara = data['AddressDetails']['Country']['CountryName']
+            area = data['AddressDetails']['Country'].get('AdministrativeArea', 
+                                                          None)
+    
+        if akurasi >= 2:
+            provinsi_nama = area['AdministrativeAreaName']
+            provinsi = prov.get_kode(provinsi_nama)
+    
+        if akurasi >= 4:
+            kota = area['Locality']['LocalityName']
+    
+        if akurasi >= 6:
+            alamat = area['Locality']['DependentLocality'] \
+                         ['Thoroughfare']['ThoroughfareName']
 
-    provinsi, kota, alamat = None, None, None
-
-    if akurasi >= 2:
-        provinsi = area['AdministrativeAreaName']
-        provinsi = prov.get_kode(provinsi)
-
-    if akurasi >= 4:
-        kota = area['Locality']['LocalityName']
-
-    if akurasi >= 6:
-        alamat = area['Locality']['DependentLocality'] \
-                     ['Thoroughfare']['ThoroughfareName']
-
-    data = {'lokasi': {'provinsi': provinsi,
+    except (ValueError, IndexError, KeyError):
+        pass
+    
+    data = {'lokasi': {'negara': negara,
+                       'provinsi': provinsi,
+                       'provinsi_nama': provinsi_nama,
                        'kota': kota,
-                       'alamat': alamat}}
+                       'alamat': alamat,
+                       'lat': lat,
+                       'lng': lng,
+                       'north': north,
+                       'south': south,
+                       'east': east,
+                       'west': west}}
 
     return respon_json_ok(data)
 
-def lokasi(request, posisi):
-    if not _validasi_posisi(posisi):
-        raise Http404()
+def lokasi(request):
+    posisi = request.GET.get('ll', None)
+    alamat = request.GET.get('alamat', None)
+    kota = request.GET.get('kota', None)
+    provinsi = request.GET.get('provinsi', None)
+
+    if posisi is not None:
+        if not _validasi_posisi(posisi):
+            raise Http404()
+        q = posisi
+    else:
+        provinsi = prov.get_nama(provinsi)
+        q = ', '.join(filter(lambda x: x != '',
+                        map(lambda x: x.strip(),
+                            filter(lambda x: x is not None,
+                                [alamat, kota, provinsi, 'Indonesia']))))
 
     param = {
-        'q': posisi,
+        'q': q,
         'output': 'json',
         'sensor': 'false',
         'key': settings.GMAPS_API_KEY

@@ -68,7 +68,7 @@ function deteksiPosisi() {
 
     $('#cari .geo').html('mendeteksi posisi..');
     geolocation.getCurrentPosition(function(position) {  
-        url = '/lokasi/' + position.coords.latitude + ',' + position.coords.longitude + '/';
+        url = '/lokasi/?ll=' + position.coords.latitude + ',' + position.coords.longitude;
         $.getJSON(url, function(json) {
             var lokasi = json.lokasi;
             $('#cari *[name="kota"]').get(0).value = lokasi.kota;
