@@ -191,4 +191,23 @@ def lokasi(request, posisi):
 
     return HttpResponse(lokasi, content_type="text/plain")
 
+def distributor(request):
+    toko = models.Toko.objects.all()
+    daftar = {}
+    for item in toko:
+        p = item.provinsi
+        d = daftar.get(p, {'nama': models.daftar_provinsi_map[p], 
+                           'toko': []})
+        d['toko'].append(item)
+        daftar[p] = d
+    
+    daftar_toko = []
+    for k, v in models.daftar_provinsi:
+        p = daftar.get(k, None)
+        if p is not None:
+            daftar_toko.append(p)
+
+    return render_to_response('distributor.html', {
+            'daftar': daftar_toko,
+        }, context_instance=RequestContext(request))
 
