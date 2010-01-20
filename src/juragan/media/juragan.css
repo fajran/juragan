@@ -1,6 +1,19 @@
-#cari form label {
+form p label {
     float: left;
-    width: 70px;
+    width: 65px;
+    text-align: right;
+    margin-left: -75px;
+    padding: 3px 10px 0 0;
+}
+form p {
+    margin-left: 70px;
+}
+form.wide p label {
+    width: 165px;
+    margin-left: -175px;
+}
+form.wide p {
+    margin-left: 170px;
 }
 
 #cari #peta {
@@ -154,4 +167,9 @@ ul, ol {
 
 #admin.index div.tambah {
     margin-top: 30px;
+}
+
+#login form,
+#ganti-password form {
+    margin-top: 20px;
 }

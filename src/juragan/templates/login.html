@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="login">
+<h2>Login</h2>
+
+<form method="post">
+{{ form.as_p }}
+<p><label></label><input type="submit" value="Login"/></p>
+</form>
+</div>
+{% endblock %}

@@ -86,11 +86,11 @@ INSTALLED_APPS = (
     'juragan',
     'juragan.toko',
     'juragan.lokasi',
-    'registration',
     'django.contrib.markup',
 )
 
-ACCOUNT_ACTIVATION_DAYS = 7
-
 GMAPS_API_KEY = 'ABQIAAAA4FaGnGOMtlKmOlMo5LLqExRRCPQO-UmsOrR02oZrGIZ1qAQRdBQJCttkDNPYa4t6FGtXtYcBdnfuOQ'
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
