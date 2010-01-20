@@ -19,7 +19,7 @@ daftar_provinsi = (
     ('ID-JK','DKI Jakarta'),
     ('ID-JB','Jawa Barat'),
     ('ID-JT','Jawa Tengah'),
-    ('ID-YO','Daerah Khusus Ibukota Jakarta'),
+    ('ID-YO','Daerah Khusus Yogyakarta'),
     ('ID-JI','Jawa Timur'),
     ('ID-BT','Banten'),
     ('ID-BA','Bali'),
