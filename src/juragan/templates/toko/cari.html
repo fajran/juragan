@@ -74,7 +74,7 @@ function deteksiPosisi() {
             $('#cari *[name="kota"]').get(0).value = lokasi.kota;
             $('#cari *[name="alamat"]').get(0).value = lokasi.alamat;
             $('#cari *[name="provinsi"]').get(0).value = lokasi.provinsi;
-            $('#cari .geo').html('');
+            $('#cari .geo').html('posisi terdeteksi, akurasi '+position.coords.accuracy+'m');
         });
     });  
 }
