@@ -47,7 +47,10 @@ def _bandingkan_jarak(a, b):
 def cari_terdekat(lat, lng, max=5):
     daftar = []
 
-    toko = Toko.objects.filter(aktif=True)
+    toko = Toko.objects.filter(aktif=True) \
+            .exclude(geo_lintang=None)
+            .exclude(geo_bujur=None)
+
     for t in toko:
         tlat = t.geo_lintang
         tlng = t.geo_bujur
