@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     (r'^daftar/$', 'juragan.views.daftar'),
     (r'^cari/$', 'juragan.views.cari'),
     (r'^lokasi/(?P<posisi>.+)/$', 'juragan.views.lokasi'),
-    (r'^toko/(?P<toko_id>\d+)$', 'juragan.views.toko'),
+    (r'^toko/(?P<toko_id>\d+)/$', 'juragan.views.toko'),
     (r'^$', 'juragan.views.index'),
 )

@@ -1,3 +1,9 @@
 #toko-info h1 {
     font-size: 16px;
 }
+#toko-info h1 a {
+    color: inherit;
+}
+#toko-info h1 a:hover {
+    background: inherit;
+}

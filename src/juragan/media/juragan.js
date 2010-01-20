@@ -110,7 +110,7 @@ var juragan = {
 
         var content = "";
         content += '<div id="toko-info">';
-        content += '<h1>' + juragan.nama + '</h1>';
+        content += '<h1><a href="/toko/'+toko.id+'/">' + juragan.nama + '</a></h1>';
         if (juragan.website != undefined && juragan.website != null) {
             content += '<p class="web"><a target="_blank" href="' + juragan.website + '">' + juragan.website + '</a></p>';
         }
