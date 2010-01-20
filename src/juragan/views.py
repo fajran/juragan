@@ -68,6 +68,7 @@ def daftar(request):
             toko = models.Toko.objects.filter(juragan=item)
             for t in toko:
                 dd = {
+                    'id': t.id,
                     'alamat': t.alamat,
                     'kota': t.kota,
                     'provinsi': models.daftar_provinsi_map[t.provinsi],
