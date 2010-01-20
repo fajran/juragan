@@ -76,6 +76,7 @@ def daftar(request):
         juragan = models.Juragan.objects.all()
         for item in juragan:
             d = {
+                'id': item.id,
                 'nama': item.nama,
                 'website': item.website,
                 'email': item.email,
