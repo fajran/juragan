@@ -152,7 +152,7 @@ def toko(request, toko_id):
                     map(lambda x: x.strip(),
                         produk.splitlines()))
 
-    toko.provinsi_nama = models.daftar_provinsi_map[toko.provinsi]
+    toko = tambah_nama_provinsi(toko)
 
     return render_to_response('toko.html', {
             'toko': toko,
