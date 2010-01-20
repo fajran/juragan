@@ -225,8 +225,6 @@ function cari_gm() {
     var ilng = form.find('.koordinat input').get(1);
 
     geocoder.geocode({'address': q}, function(res, stat) {
-        console.log('stat:', stat);
-        console.log('res:', res);
         if (stat == google.maps.GeocoderStatus.OK) {
             map.fitBounds(res[0].geometry.bounds);
             map.setCenter(res[0].geometry.location);
