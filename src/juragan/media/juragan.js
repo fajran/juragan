@@ -112,7 +112,7 @@ var juragan = {
         content += '<div id="toko-info">';
         content += '<h1>' + juragan.nama + '</h1>';
         if (juragan.website != undefined && juragan.website != null) {
-            content += '<p class="web"><a href="' + juragan.website + '">' + juragan.website + '</a></p>';
+            content += '<p class="web"><a target="_blank" href="' + juragan.website + '">' + juragan.website + '</a></p>';
         }
         content += '<p class="email">Email: <a href="mailto:' + juragan.email + '">' + juragan.email + '</a></p>';
         content += '<p class="alamat">' + toko.alamat + '<br/>' + toko.kota + '<br/>' + toko.provinsi + '</p>';
