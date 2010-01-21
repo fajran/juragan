@@ -1,4 +1,6 @@
 
+var INDONESIA = new google.maps.LatLng(-0.7892750, 113.9213270);
+
 var juragan = {
     canvas: undefined,
     pos: undefined,
@@ -12,8 +14,9 @@ var juragan = {
     init: function(canvas) {
         this.canvas = canvas;
         this.map = new google.maps.Map(canvas.get(0), {
-            zoom: 3,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            zoom: 4,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: INDONESIA
         });
     },
 
