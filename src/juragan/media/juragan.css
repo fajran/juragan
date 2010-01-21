@@ -22,6 +22,13 @@ form.wide p {
     margin: 20px 0 40px 0;
 }
 
+#daftar #peta {
+    width: 660px;
+    height: 300px;
+    background: red;
+    margin: 0 0 30px 0;
+}
+
 #dekat ol li span {
     cursor: pointer;
     text-decoration: underline;

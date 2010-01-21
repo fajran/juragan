@@ -1,7 +1,26 @@
 {% extends "toko/base.html" %}
 
+{% block extraheaders %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/+media/juragan.js"></script>
+<script type="text/javascript">
+function buka_peta(sender) {
+    $(sender).parent().remove();
+    $('#peta').show();
+    juragan.init($('#peta'));
+    juragan.show();
+}
+</script>
+{% endblock %}
+
+
 {% block content %}
+<div id="daftar">
 <h2>Daftar Distributor</h2>
+
+<p><a href="#" onclick="buka_peta(this); return false;">Tampilkan dalam peta</a></p>
+
+<div id="peta" style="display:none"></div>
 
 {% for provinsi in daftar %}
 <h3>{{ provinsi.nama }}</h3>
@@ -12,4 +31,5 @@
 </ul>
 {% endfor %}
 
+</div>
 {% endblock %}

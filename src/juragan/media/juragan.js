@@ -21,10 +21,13 @@ var juragan = {
     },
 
     show: function(pos, dekat) {
-        this.pos = pos;
-        this._updatePosition();
-        this._placePosition();
         this._loadToko();
+
+        if (pos != undefined) {
+            this.pos = pos;
+            this._updatePosition();
+            this._placePosition();
+        }
 
         if (dekat != undefined) {
             this._setBounds(pos, dekat);
